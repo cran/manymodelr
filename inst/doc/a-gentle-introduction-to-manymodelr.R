@@ -18,12 +18,12 @@ head(agg_by_group(mtcars,cyl~hp+vs,sum))
 
 ## ------------------------------------------------------------------------
 suppressMessages(library(caret))
+set.seed(520)
 train_set<-createDataPartition(iris$Species,p=0.8,list=FALSE)
 valid_set<-iris[-train_set,]
 train_set<-iris[train_set,]
 ctrl<-trainControl(method="cv",number=5)
-set.seed(233)
- m<-multi_model_1(train_set,"Species",".",c("knn","rpart"),
+m<-multi_model_1(train_set,"Species",".",c("knn","rpart"),
 "Accuracy",ctrl,newdata =valid_set,valid=TRUE)
 
 ## ------------------------------------------------------------------------
