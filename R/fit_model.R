@@ -1,3 +1,28 @@
+#' @inheritParams modeleR
+#' @name fit_model
+#' @title Fit and predict in a single function.
+#' @examples
+#' fit_model(iris,"Sepal.Length","Species","aov")
+#' fit_model(iris,"Sepal.Width","Sepal.Length + Petal.Length + I(Petal.Width)**2","lm")
+#' @export
+fit_model <- function (df, yname, xname, modeltype,...)
+{
+  UseMethod("fit_model")
+}
+#' @export
+fit_model <- function (df, yname, xname, modeltype,...){
+  
+  model_formula <- as.formula(paste(yname, "~", xname))
+  do.call(modeltype, list(data = quote(df), model_formula,
+                          ...))
+}
+
+
+
+
+
+
+
 #' Perform several kinds of models in one function
 #' @importFrom stats "as.formula"  "complete.cases" "setNames"
 #' @importFrom stats "predict"
@@ -18,14 +43,17 @@
 #'
 #'Wilkinson, G. N. and Rogers, C. E. (1973). Symbolic descriptions of factorial models for analysis of variance. Applied
 #'Statistics, 22, 392-399. doi: 10.2307/2346786.
-#' @examples
-#' iris1<-iris[1:60,]
-#' iris2<-iris[60:nrow(iris),]
-#' modeleR(iris1,Sepal.Length,Petal.Length,
-#'          lm,na.rm=TRUE,iris2)
-#' @export
-modeleR<-function (df, yname, xname, modeltype, na.rm = F, new_data, ...)
+#' @export 
+modeleR<-function (df, yname, xname, modeltype, na.rm = FALSE,
+                   new_data, ...)
 {
+  UseMethod("modeleR")
+}
+modeleR<-function (df, yname, xname, modeltype, na.rm = FALSE,
+                   new_data, ...)
+{
+  .Deprecated("fit_model")
+  # use fit_model
   yname <- deparse(substitute(yname))
   xname <- deparse(substitute(xname))
   to_use <- which(names(df) == yname)
@@ -65,7 +93,7 @@ modeleR<-function (df, yname, xname, modeltype, na.rm = F, new_data, ...)
     res$DataFrame$Explanatory <- gsub("\\+", "", res$DataFrame$Explanatory)
     res
   }
-  else if (modeltype == "aov" & na.rm == T) {
+  else if (modeltype == "aov" & na.rm) {
     lm.fit <- do.call(modeltype, list(data = quote(df), formula1,
                                       ...))
     m <- summary(lm.fit)
@@ -84,7 +112,7 @@ modeleR<-function (df, yname, xname, modeltype, na.rm = F, new_data, ...)
     names(res$Predictions) <- c("Predicted")
     res
   }
-  else if (modeltype == "aov" & na.rm == F) {
+  else if (modeltype == "aov" & !na.rm) {
     lm.fit <- do.call(modeltype, list(data = quote(df), formula = formula1,
                                       ...))
     m <- summary(lm.fit)
@@ -103,3 +131,4 @@ modeleR<-function (df, yname, xname, modeltype, na.rm = F, new_data, ...)
     res
   }
 }
+

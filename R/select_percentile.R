@@ -16,6 +16,10 @@
 #' select_percentile(iris,5)
 #'@export
 select_percentile<-function(df,percentile,get_all=TRUE,descend=FALSE){
+  UseMethod("select_percentile")
+}
+#' @export
+select_percentile.data.frame<-function(df,percentile,get_all=TRUE,descend=FALSE){
   # Returns the value corresponding to a percentile
   # Returns mean values if the position of the percentile is  whole number
   # Values are sorted in ascending order. You can change this
@@ -28,7 +32,7 @@ select_percentile<-function(df,percentile,get_all=TRUE,descend=FALSE){
   }
   numerics <- Filter(is.numeric,df)
   sort_by<- which(names(df)==names(numerics)[1])
-  if(get_all==TRUE){
+  if(get_all){
     sort_by<-names(numerics)[1]
     ordered_df<-df[sort(df[,sort_by],decreasing = descend,
                         index.return=T)[[2]],]

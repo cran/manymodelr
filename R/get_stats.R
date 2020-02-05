@@ -10,23 +10,42 @@
 #' @details A convenient wrapper especially useful for get_mode
 #' @examples
 #' get_data_Stats(airquality,mean,"non_numeric",na.rm = TRUE,na_action = "mean")
+#' @export 
+get_data_Stats<-function(x, func,exclude=NULL,na.rm=TRUE,na_action=NULL){
+  UseMethod("get_data_Stats")
+}
 #' @export
-get_data_Stats<-function (x, func,exclude=NULL,na.rm=TRUE,na_action=NULL)
+get_data_Stats.default <-function (x, func,exclude=NULL,na.rm=TRUE,na_action=NULL){
+  stop("get_data_Stats is only implemented(currently) for
+       data.frame objects. Please convert to a data.frame object.")
+}
+#' @export
+get_data_Stats.data.frame<-function (x, func,exclude=NULL,na.rm=TRUE,na_action=NULL)
 {
-  if(na.rm==TRUE & anyNA(x)==TRUE){
+  if(na.rm & anyNA(x)){
     x<-na_replace(x,how=na_action)
   }
   if(is.null(exclude)|| missing(exclude)){
     x <- x
   }
   else if(exclude=="non_numeric"){
+    warning("Non numeric columns have been discarded.")
     x<-Filter(is.numeric,x)
 
 
   }
-  sapply(x,function(x) do.call(func,list(x)))
-
+ sapply(x,function(x) do.call(func,list(x)))
+  
+  
 }
+
+# Alias get_data_Stats with something simpler
+
+#' @rdname get_data_Stats
+#' @examples get_stats(airquality,mean,"non_numeric",na.rm = TRUE,na_action = "mean")
+#' @export
+get_stats <- get_data_Stats
+
 
 
 
