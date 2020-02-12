@@ -1,6 +1,6 @@
-27ed45ff984a9409d1432d1b7425215a *DESCRIPTION
+8e589ddbefc7abfb88394a09539ef669 *DESCRIPTION
 d31cc006635bb2ab5e0827ee230d57b8 *NAMESPACE
-eeb1647ac615409c92f53e3d7591ef86 *NEWS.md
+dd0dbedde5db565b2087d3ba8f6dcaa3 *NEWS.md
 15944a1e5ca9a31591fce896f0516224 *R/add_model_predictions.R
 d328d257a3517fd29b0c25f9aa9fcf4f *R/agg_by_group.R
 9c740d66abf622ad1df5740b4e9ed73a *R/extract_model_info.R
@@ -24,7 +24,7 @@ defe43d544a9d29562ea8c01b69ed5d2 *R/helpers.R
 1cd4017aa28c0c1a652f34be99338030 *build/vignette.rds
 c3bec2b8dc45ca10d784df94d75e6616 *inst/doc/a-gentle-introduction-to-manymodelr.R
 781fb55ba868708532ea8f13aa0a3dad *inst/doc/a-gentle-introduction-to-manymodelr.Rmd
-0c3cb8bd5fb5ed7fd1ee9099ec3e82c0 *inst/doc/a-gentle-introduction-to-manymodelr.html
+cdf54248025db47518bd5078b48fbfdb *inst/doc/a-gentle-introduction-to-manymodelr.html
 577d4c8658b34ad20a06a1ccb28878a1 *man/add_model_predictions.Rd
 97f5b7599755b2f5358f0f581dc8d7c1 *man/add_model_residuals.Rd
 c0cf5b823054685c2eaf64bee5f4ac48 *man/agg_by_group.Rd
