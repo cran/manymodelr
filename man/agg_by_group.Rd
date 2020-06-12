@@ -4,7 +4,7 @@
 \alias{agg_by_group}
 \title{A convenient way to perform grouped operations}
 \usage{
-agg_by_group(df, my_formula, func, ...)
+agg_by_group(df = NULL, my_formula = NULL, func = NULL, ...)
 }
 \arguments{
 \item{df}{The data set for which correlations are required}
@@ -23,5 +23,5 @@ A grouped data.frame object with results of the chosen operation.
 This function performs operations by grouping the data.
 }
 \examples{
-agg_by_group(airquality,.~Month,sum)
+head(agg_by_group(airquality,.~Month,sum))
 }

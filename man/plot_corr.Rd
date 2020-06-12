@@ -6,16 +6,15 @@
 \usage{
 plot_corr(
   df,
-  x = "Comparison_Var",
-  y = "Other_Var",
-  xlabel = "Comparison_Variable",
-  ylabel = "Other_Variable",
+  x = "comparison_var",
+  y = "other_var",
+  xlabel = "comparison_variable",
+  ylabel = "other_variable",
   title = "Correlations Plot",
   plot_style = "circles",
   title_just = 0.5,
-  round_values = TRUE,
-  round_which = "Correlation",
-  colour_by = "Correlation",
+  round_which = NULL,
+  colour_by = NULL,
   decimals = 2,
   show_which = "corr",
   size = 12.6,
@@ -37,9 +36,9 @@ plot_corr(
 \item{df}{The data to be plotted. A `data.frame` object produced
 by `get_var_corr_`}
 
-\item{x}{Value for the x axis. Defaults to "Comparison_Var"}
+\item{x}{Value for the x axis. Defaults to "comparison_var"}
 
-\item{y}{Values for the y axis. Defaults to "Other_Var."}
+\item{y}{Values for the y axis. Defaults to "other_var."}
 
 \item{xlabel}{label for the x axis}
 
@@ -51,11 +50,9 @@ by `get_var_corr_`}
 
 \item{title_just}{Justification of the title. Defaults to 0.5, title is centered.}
 
-\item{round_values}{Logical. Should values be rounded off? Defaults to TRUE.}
-
 \item{round_which}{Character. The column name to be rounded off.}
 
-\item{colour_by}{The column to use for coloring. Defaults to  "Correlation". Colour strength thus
+\item{colour_by}{The column to use for coloring. Defaults to  "correlation". Colour strength thus
 indicates the strength of correlations.}
 
 \item{decimals}{Numeric. To how many decimal places should the rounding be done?
@@ -63,7 +60,7 @@ Defaults to 2.}
 
 \item{show_which}{Character. One of either corr or signif to control whether to show the
 correlation values or significance stars of the correlations. This is case sensitive and defaults to
-corr ie correlation values are shown.}
+corr i.e. correlation values are shown.}
 
 \item{size}{Size of the circles for plot_style set to circles}
 
@@ -90,9 +87,9 @@ labels produced by the plot method.}
 
 \item{signif_size}{Numeric. Defines size of the significance stars.}
 
-\item{signif_col}{Charcater. Defines the col for the significance stars.}
+\item{signif_col}{Character. Defines the col for the significance stars.}
 
-\item{...}{Other arguments to specific methods(`geom_text`) Useful once `show_signif` is set to  TRUE.}
+\item{...}{Other arguments to get_var_corr_}
 }
 \value{
 A `ggplot2` object showing the correlations plot.
@@ -107,12 +104,9 @@ Since the correlations are obtained by `get_var_corr_`, the default is to omit c
 blanks in the plot would indicate a correlation of 1.
 }
 \examples{
-# compute correlations
-res<-get_var_corr_(mtcars)
-# defaults
-plot_corr(res,show_which = "corr",
+plot_corr(mtcars,show_which = "corr",
 round_values = TRUE,
-round_which = "Correlation",decimals = 2,x="Other_Var", 
-y="Comparison_Var",plot_style = "circles",width = 1.1,
-custom_cols = c("green","blue","red"),colour_by = "Correlation")
+round_which = "correlation",decimals = 2,x="other_var", 
+y="comparison_var",plot_style = "circles",width = 1.1,
+custom_cols = c("green","blue","red"),colour_by = "correlation")
 }

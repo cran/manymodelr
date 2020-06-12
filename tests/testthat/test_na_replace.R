@@ -5,34 +5,37 @@ testthat::test_that(desc="NA replacement works",
                       
                   test_data <- data.frame(ID=c("A","A",
                                                "B","B"),
-                                          Val=c(1,NA,2,NA),
-                                          stringsAsFactors = FALSE)
-              testthat::expect_equal(na_replace(test_data,
-                             how="value","Replaced")[2,2],
-                             "Replaced",
-                             fixed= TRUE)
-              testthat::expect_equal(as.numeric(na_replace(test_data,
-                                                how="max")[2,2]),
+                                          Val=c(1,2,2,NA))
+             expect_equal(na_replace(test_data,
+                             how="value",0)[4,2],
+                             0)
+             expect_equal(as.numeric(na_replace(test_data,
+                                                how="get_mode")[4,2]),
                                      2)
+             expect_equal(na_replace(df=test_data,how="ffill")[4,2],1)
+             set.seed(123)
+             expect_equal(na_replace(df=test_data,how="samples")[4,2],2)
               
-              
+            expect_error(na_replace(test_data),"One of how or value should be provided",
+                         fixed=TRUE)
+          
                     
                   })
 
-testthat::test_that(desc="Test grouped replacement",
+test_that(desc="Test grouped replacement",
                     code={
                       
               test_data <- data.frame(ID=c("A","A","A",
                                                    "B","B","B"),
-                                              Val=c(1,NA,3,2,NA,5),
-                                              stringsAsFactors = FALSE)
-              testthat::expect_equal(na_replace_grouped(test_data,
+                                              Val=c(1,NA,3,2,NA,5))
+            expect_equal(na_replace_grouped(test_data,
                                                         group_by_cols = "ID",
-                                                        how="mean")[2,2],
-                                     2)
-              testthat::expect_equal(na_replace_grouped(test_data,
+                                                        how="get_mode")[2,2],
+                                     1)
+              expect_error(na_replace_grouped(test_data,
                                                         group_by_cols = "ID",
-                                                        how="mean")[5,2],
-                                     3.5)
+                                                        how="mean"),
+                                     "how should be one of ffill, samples, value or get_mode.",
+                                     fixed = TRUE)
                     })
 
