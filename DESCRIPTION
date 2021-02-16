@@ -1,6 +1,6 @@
 Package: manymodelr
 Title: Build and Tune Several Models
-Version: 0.3.2
+Version: 0.3.5
 Authors@R: 
     person(given = "Nelson",
            family = "Gonzabato",
@@ -15,7 +15,7 @@ Description: Frequently one needs a convenient way to build and tune
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Imports: dplyr(>= 0.8.9), ggplot2(>= 3.2.0), lme4(>= 1.1.23)
 Depends: R(>= 3.6.0), caret(>= 6.0-81), Metrics(>= 0.1.4), e1071(>=
         1.7-0.1)
@@ -24,8 +24,8 @@ BugReports: https://github.com/Nelson-Gon/manymodelr/issues
 Suggests: knitr, rmarkdown, testthat, covr
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-06-27 15:04:32 UTC; Nelson
+Packaged: 2021-02-16 12:17:02 UTC; Nelg
 Author: Nelson Gonzabato [aut, cre]
 Maintainer: Nelson Gonzabato <gonzabato@hotmail.com>
 Repository: CRAN
-Date/Publication: 2020-06-27 15:20:02 UTC
+Date/Publication: 2021-02-16 16:50:02 UTC

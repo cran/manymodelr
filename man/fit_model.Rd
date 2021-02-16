@@ -4,7 +4,14 @@
 \alias{fit_model}
 \title{Fit and predict in a single function.}
 \usage{
-fit_model(df = NULL, yname = NULL, xname = NULL, modeltype = NULL, ...)
+fit_model(
+  df = NULL,
+  yname = NULL,
+  xname = NULL,
+  modeltype = NULL,
+  drop_non_numeric = FALSE,
+  ...
+)
 }
 \arguments{
 \item{df}{A data.frame object}
@@ -13,7 +20,11 @@ fit_model(df = NULL, yname = NULL, xname = NULL, modeltype = NULL, ...)
 
 \item{xname}{The predictor variable(s)}
 
-\item{modeltype}{A character specifying the model type e.g lm for linear model}
+\item{modeltype}{A character specifying the model type e.g lm for 
+linear model}
+
+\item{drop_non_numeric}{Should non numeric columns be dropped? 
+Defaults to FALSE}
 
 \item{...}{Other arguments to specific model types.}
 }
@@ -22,5 +33,6 @@ Fit and predict in a single function.
 }
 \examples{
 fit_model(iris,"Sepal.Length","Species","lm")
-fit_model(iris,"Sepal.Width","Sepal.Length + Petal.Length + I(Petal.Width)**2","lm")
+fit_model(iris,"Sepal.Width",
+"Sepal.Length + Petal.Length + I(Petal.Width)**2","lm")
 }
