@@ -5,6 +5,19 @@ author: "Nelson Gonzabato"
 output: htlm_document
 
 ---
+# manymodelr 0.3.6
+
+
+* Updated all examples to use the new dataset, `yields`.
+
+* Topic based vignettes are now available. 
+
+* Added a new dataset `yields` that may be useful for testing purposes. 
+
+* Fixed issues with `knitr` causing failing builds. 
+
+* Updated docs with newer examples.
+
 # manymodelr 0.3.5
 
 * Extended `fit_models` to support model fitting for several variables for several model types. 
