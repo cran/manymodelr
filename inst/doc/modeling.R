@@ -10,18 +10,13 @@ set.seed(520)
 # Create a simple dataset with a binary target
 # Here normal is a fictional target where we assume that it meets 
 # some criterion means 
-sample_data <- data.frame(normal = as.factor(rep(c("Yes", "No"), 500)), 
-                          height=rnorm(100, mean=0.5, sd=0.2), 
-                          weight=runif(100,0, 0.6),
-                          yield = rnorm(100, mean =520, sd = 10))
-
-head(sample_data)
+data("yields", package = "manymodelr")
 
 ## -----------------------------------------------------------------------------
 set.seed(520)
-train_set<-createDataPartition(sample_data$normal,p=0.6,list=FALSE)
-valid_set<-sample_data[-train_set,]
-train_set<-sample_data[train_set,]
+train_set<-createDataPartition(yields$normal,p=0.6,list=FALSE)
+valid_set<-yields[-train_set,]
+train_set<-yields[train_set,]
 ctrl<-trainControl(method="cv",number=5)
 m<-multi_model_1(train_set,"normal",".",c("knn","rpart"), 
                  "Accuracy",ctrl,new_data =valid_set)
@@ -58,23 +53,27 @@ lm_model
 
 ## -----------------------------------------------------------------------------
 
-models<-fit_models(df=sample_data,yname=c("height", "weight"),xname="yield",
+models<-fit_models(df=yields,yname=c("height", "weight"),xname="yield",
                    modeltype="glm") 
 
 
 ## -----------------------------------------------------------------------------
 
 
-res_residuals <- lapply(models[[1]], add_model_residuals,sample_data)
-res_predictions <- lapply(models[[1]], add_model_predictions, sample_data, sample_data)
+res_residuals <- lapply(models[[1]], add_model_residuals,yields)
+res_predictions <- lapply(models[[1]], add_model_predictions, yields, yields)
 # Get height predictions for the model height ~ yield 
 head(res_predictions[[1]])
 
 
 ## -----------------------------------------------------------------------------
-fit_models(df=sample_data,yname=c("height","weight"),
+m_models<-fit_models(df=yields,yname=c("height","weight"),
            xname=".",modeltype=c("lm","glm"), drop_non_numeric = TRUE)
+m_models[[1]]
 
+
+## -----------------------------------------------------------------------------
+report_model(m_models[[2]][[1]])
 
 ## -----------------------------------------------------------------------------
 

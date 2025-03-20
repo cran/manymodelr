@@ -4,6 +4,19 @@ author: "Nelson Gonzabato"
 output: html_document
 ---
 
+# manymodelr 0.3.8
+
+* Fixed issues with extracting groups for a future version of R. 
+
+* The minimum required R version was updated to 4.4.
+
+* A new function `report_model` was introduced to allow simple model reports. 
+See `?report_model` for details and documentation. 
+
+* We now use `testthat` edition 3 which makes it easier to deal with warnings
+and errors in a cleaner way. See https://github.com/r-lib/testthat/issues/1471,
+https://github.com/Nelson-Gon/manymodelr/pull/22. 
+
 # manymodelr 0.3.7 
 
 * We no longer use any URLs in vignettes to avoid issues with CRAN checks. 
