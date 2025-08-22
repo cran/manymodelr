@@ -3,8 +3,6 @@
 #' @param response_name Name of the response variable. Defaults to "Score".
 #' @return A data.frame object showing a simple model report that includes the
 #' effect of each predictor variable on the response.
-#' @importFrom dplyr mutate select everything
-#' @importFrom stringr str_replace_all
 #' @examples
 #' models<-fit_models(df=yields,yname=c("height","yield"),xname="weight",
 #' modeltype=c("lm", "glm"))
@@ -53,7 +51,7 @@ report_model.glm <- function(model_object = NULL,
         ),
         round(Exp_Estimate, 2)
       ),
-      Type = stringr::str_replace_all(
+      Type = str_replace_all(
         Type,
         "^\\(.*",
         paste0("Estimated ",

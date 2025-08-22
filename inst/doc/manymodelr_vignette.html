@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2025-03-19" />
+<meta name="date" content="2025-08-22" />
 
 <title>manymodelr: Build and Tune Several Models</title>
 
@@ -351,7 +351,7 @@ display: none;
 
 <h1 class="title toc-ignore">manymodelr: Build and Tune Several
 Models</h1>
-<h4 class="date">2025-03-19</h4>
+<h4 class="date">2025-08-22</h4>
 
 </div>
 
@@ -390,13 +390,14 @@ function’s name reflects the fact that we can fit several model types
 with one function. An example follows next.</p>
 <p>For purposes of this report, we create a simple dataset to use.</p>
 <pre class="r"><code>set.seed(520)
-train_set&lt;-createDataPartition(yields$normal,p=0.6,list=FALSE)
+train_set&lt;-caret::createDataPartition(yields$normal,p=0.6,list=FALSE)
 valid_set&lt;-yields[-train_set,]
 train_set&lt;-yields[train_set,]
-ctrl&lt;-trainControl(method=&quot;cv&quot;,number=5)
+ctrl&lt;-caret::trainControl(method=&quot;cv&quot;,number=5)
 m&lt;-multi_model_1(train_set,&quot;normal&quot;,&quot;.&quot;,c(&quot;knn&quot;,&quot;rpart&quot;), 
                  &quot;Accuracy&quot;,ctrl,new_data =valid_set)
-</code></pre>
+#&gt; Loading required package: ggplot2
+#&gt; Loading required package: lattice</code></pre>
 <p>The above returns a list containing metrics, predictions, and a model
 summary. These can be extracted as shown below.</p>
 <pre class="r"><code>

@@ -14,10 +14,10 @@ data("yields", package = "manymodelr")
 
 ## -----------------------------------------------------------------------------
 set.seed(520)
-train_set<-createDataPartition(yields$normal,p=0.6,list=FALSE)
+train_set<-caret::createDataPartition(yields$normal,p=0.6,list=FALSE)
 valid_set<-yields[-train_set,]
 train_set<-yields[train_set,]
-ctrl<-trainControl(method="cv",number=5)
+ctrl<-caret::trainControl(method="cv",number=5)
 m<-multi_model_1(train_set,"normal",".",c("knn","rpart"), 
                  "Accuracy",ctrl,new_data =valid_set)
 

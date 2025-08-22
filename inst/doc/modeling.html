@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2025-03-19" />
+<meta name="date" content="2025-08-22" />
 
 <title>Building predictive models with manymodelr</title>
 
@@ -351,7 +351,7 @@ display: none;
 
 <h1 class="title toc-ignore">Building predictive models with
 manymodelr</h1>
-<h4 class="date">2025-03-19</h4>
+<h4 class="date">2025-08-22</h4>
 
 </div>
 
@@ -379,10 +379,10 @@ set.seed(520)
 # some criterion means 
 data(&quot;yields&quot;, package = &quot;manymodelr&quot;)</code></pre>
 <pre class="r"><code>set.seed(520)
-train_set&lt;-createDataPartition(yields$normal,p=0.6,list=FALSE)
+train_set&lt;-caret::createDataPartition(yields$normal,p=0.6,list=FALSE)
 valid_set&lt;-yields[-train_set,]
 train_set&lt;-yields[train_set,]
-ctrl&lt;-trainControl(method=&quot;cv&quot;,number=5)
+ctrl&lt;-caret::trainControl(method=&quot;cv&quot;,number=5)
 m&lt;-multi_model_1(train_set,&quot;normal&quot;,&quot;.&quot;,c(&quot;knn&quot;,&quot;rpart&quot;), 
                  &quot;Accuracy&quot;,ctrl,new_data =valid_set)
 </code></pre>
